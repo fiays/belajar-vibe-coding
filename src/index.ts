@@ -1,6 +1,7 @@
 import { Elysia } from "elysia";
 import { db } from "./db";
 import { users } from "./db/schema";
+import { usersRoute } from "./routes/users-route";
 
 const app = new Elysia()
   .get("/", () => "Welcome to Elysia!")
@@ -12,6 +13,7 @@ const app = new Elysia()
       return { error: "Database connection failed or table not found" };
     }
   })
+  .use(usersRoute)
   .listen(3000);
 
 console.log(
